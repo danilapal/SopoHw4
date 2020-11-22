@@ -1,0 +1,15 @@
+node('test-agent'){
+	stage('install gcc and clone rep') {
+	    sh 'sudo apt-get update'
+		sh 'sudo apt-get install build-essential manpages-dev'
+		sh 'gcc --version'
+		sh 'sudo rm -rf SopoHw4'
+		sh 'git clone https://github.com/danilapal/SopoHw4.git'
+	}
+	stage('compile gcc program'){
+		sh 'cc SopoHw4/hw4.c -o SopoHw4/hw4'
+	}
+	stage('start code') {
+		sh './SopoHw4/hw4'
+	}
+}
